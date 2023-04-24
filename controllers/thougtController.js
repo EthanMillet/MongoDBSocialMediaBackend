@@ -35,8 +35,9 @@ async createThought(req, res) {
     try {
         const thought = await Thought.create(req.body);
 
-        const user = await User.findById({_id: req.params.userId})
-        user.thoughts.push(thought._id);
+        const user = await User.findOneAndUpdate({_id: req.params.userId}, {"$push": {thoughts: thought.id}})
+        console.log(thought.id)
+        
         res.json(thought)
     } catch (err) {
         console.log(err);

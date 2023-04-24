@@ -9,7 +9,9 @@ const {
     deleteReaction
 } = require('../../controllers/thougtController')
 
-router.route('/').get(getThought).post(createThought);
+router.route('/').get(getThought);
+
+router.route('/:userId').post(createThought);
 
 router.route('/:thougtId')
 .get(getSingleThought)
